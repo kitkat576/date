@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение</title>
+    <!-- Подключаем CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Фоновые анимированные сердечки -->
+    <div class="hearts-background">
+        <span>❤️</span>
+        <span>💖</span>
+        <span>✨</span>
+        <span>💕</span>
+        <span>💗</span>
+    </div>
+
+    <div class="container">
+        <!-- Шаг 1: Письмо / Начало отношений -->
+        <div id="letter-screen" class="card active">
+            <div class="sticker-box">
+                <span>💌</span>
+            </div>
+            
+            <h1>Ты помнишь, как мы начали встречаться?</h1>
+            
+            <div class="envelope-box" onclick="openLetterContent()">
+                <div style="font-size: 24px; margin-bottom: 8px;">✨</div>
+                <p style="margin-bottom: 0; font-size: 14px; color: #888;">Нажми, чтобы открыть письмо</p>
+            </div>
+
+            <div id="letter-text" class="hidden">
+                <p>Я помню, как смотрел в твои глаза и в самый неожиданный момент понял, что влюбился сам того не подозревая...</p>
+                <button class="btn" onclick="goToQuestion()">Дальше</button>
+            </div>
+        </div>
+
+        <!-- Шаг 2: Главный вопрос на свидание -->
+        <div id="question-screen" class="card hidden">
+            <div class="sticker-box">
+                <span>🌸</span>
+            </div>
+            <h1>Сходим со мной на свидание?</h1>
+            
+            <div class="buttons-container">
+                <button id="yes-btn" class="btn" onclick="sayYes()">Да ❤️</button>
+                <button id="no-btn" class="btn" onmouseover="dodgeNo()" onclick="dodgeNo()">Нет</button>
+            </div>
+        </div>
+
+        <!-- Шаг 3: Выбор места -->
+        <div id="place-screen" class="card hidden">
+            <div class="sticker-box">
+                <span>🍷</span>
+            </div>
+            <h1>Куда бы тебе хотелось сходить?</h1>
+            <p style="font-size: 14px; margin-bottom: 20px;">Выбери вариант:</p>
+            
+            <div class="places-grid">
+                <div class="place-card" onclick="selectPlace(this, 'В ресторан 🍷')">🍷 В ресторан</div>
+                <div class="place-card" onclick="selectPlace(this, 'в наше место')"> 🌃 В наше место</div>
+                <div class="place-card" onclick="selectPlace(this, 'В кино 🍿')">🍿 В кино</div>
+                <div class="place-card" onclick="selectPlace(this, 'Сюрприз от меня 🎁')">🎁 Сюрприз от меня</div>
+            </div>
+
+            <button class="btn" id="finish-btn" onclick="finishSelection()" disabled style="opacity: 0.5; cursor: not-allowed;">Подтвердить</button>
+        </div>
+
+        <!-- Шаг 4: Финальный экран с большим фото -->
+        <div id="success-screen" class="card hidden">
+            <div class="success-title">Ураааааааа! 🥰</div>
+            
+            <div class="photo-container">
+                <!-- Замени ссылку на свое фото -->
+                <img src="./WhatsApp Image 2026-09-30 at 16.03.04.jpeg" alt="Наша фото" class="fade-photo">
+            </div>
+
+            <p id="final-text" style="margin-top: 15px; font-weight: 500;">Жди детали свидания в личных сообщениях 😉</p>
+        </div>
+    </div>
+
+    <!-- Подключаем JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

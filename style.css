@@ -1,0 +1,264 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #fdf2f4 0%, #f4f4f6 100%);
+    color: #2c3e50;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+}
+
+/* Фоновые анимированные сердечки */
+.hearts-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hearts-background span {
+    position: absolute;
+    display: block;
+    bottom: -50px;
+    font-size: 20px;
+    animation: floatUp 8s infinite linear;
+    opacity: 0.4;
+}
+
+.hearts-background span:nth-child(1) { left: 10%; animation-duration: 7s; animation-delay: 0s; font-size: 24px; }
+.hearts-background span:nth-child(2) { left: 30%; animation-duration: 9s; animation-delay: 2s; font-size: 18px; }
+.hearts-background span:nth-child(3) { left: 50%; animation-duration: 6s; animation-delay: 1s; font-size: 22px; }
+.hearts-background span:nth-child(4) { left: 70%; animation-duration: 10s; animation-delay: 3s; font-size: 26px; }
+.hearts-background span:nth-child(5) { left: 90%; animation-duration: 8s; animation-delay: 4s; font-size: 20px; }
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.6;
+    }
+    80% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-105vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    padding: 20px;
+    z-index: 1;
+}
+
+/* Карточки */
+.card {
+    background: #ffffff;
+    padding: 35px 25px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(216, 112, 147, 0.12);
+    border: 1px solid #fde2e4;
+    position: absolute;
+    width: 90%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Делаем финальную карточку шире, чтобы фото выглядело большим */
+#success-screen {
+    max-width: 420px;
+    width: 95%;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -40%) scale(0.9);
+}
+
+h1 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #2b2d42;
+}
+
+p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Место под стикеры */
+.sticker-box {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 15px auto;
+    border: 2px dashed #f8b4bc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff9fa;
+    font-size: 26px;
+    animation: pulseIcon 2s infinite ease-in-out;
+}
+
+@keyframes pulseIcon {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
+
+/* Интерактивный конверт */
+.envelope-box {
+    cursor: pointer;
+    border: 2px dashed #f8b4bc;
+    padding: 20px;
+    border-radius: 16px;
+    background-color: #fff9fa;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.envelope-box:hover {
+    background-color: #ffeeef;
+    border-color: #e5989b;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(216, 112, 147, 0.15);
+}
+
+/* Общие кнопки */
+.btn {
+    background-color: #2b2d42;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover {
+    background-color: #d87093;
+    box-shadow: 0 5px 15px rgba(216, 112, 147, 0.3);
+}
+
+/* Кнопки да/нет */
+.buttons-container {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    position: relative;
+    min-height: 80px;
+    width: 100%;
+}
+
+#yes-btn {
+    background-color: #d87093;
+    box-shadow: 0 4px 12px rgba(216, 112, 147, 0.3);
+    z-index: 10;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#yes-btn:hover {
+    background-color: #c05c80;
+}
+
+#no-btn {
+    background-color: #f1f1f1;
+    color: #666;
+    position: relative;
+    transition: transform 0.2s ease, left 0.15s ease-out, top 0.15s ease-out;
+}
+
+/* Сетка выбора мест */
+.places-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.place-card {
+    border: 2px solid #f1f1f1;
+    border-radius: 12px;
+    padding: 12px 8px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    background: #fafafa;
+    font-size: 14px;
+}
+
+.place-card:hover {
+    border-color: #d87093;
+    background: #fff9fa;
+    transform: translateY(-2px);
+}
+
+.place-card.selected {
+    border-color: #d87093;
+    background: #ffeef2;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(216, 112, 147, 0.2);
+}
+
+.success-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #d87093;
+    margin-bottom: 15px;
+}
+
+/* Большое фото с плавной анимацией появления */
+.photo-container {
+    width: 100%;
+    height: 320px; /* Сделали контейнер высоким */
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 0 auto 15px auto;
+    box-shadow: 0 12px 30px rgba(216, 112, 147, 0.3);
+    border: 4px solid #fff;
+    background-color: #fafafa;
+}
+
+.fade-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0;
+    transform: scale(0.8); /* Начинает чуть уменьшенной */
+    transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Плавное проявление и увеличение до нормального размера */
+.fade-photo.show {
+    opacity: 1;
+    transform: scale(1);
+}
